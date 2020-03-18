@@ -2,13 +2,13 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2><%: Title %></h2>
-    <p>Your contact page.</p>
+    <p>Please contact us with any questions or problems.</p>
 
     <address>
-        One Microsoft Way<br />
-        Redmond, WA 98052-6399<br />
+        One Dental Clinic Way<br />
+        Wichita, KS 98052-6399<br />
         <abbr title="Phone">P:</abbr>
-        425.555.0100
+        999.999.9999
     </address>
 
     <address>

@@ -2,6 +2,6 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2><%: Title %>.</h2>
-    <p>Your app description page.</p>
-    <p>Use this area to provide additional information.</p>
+    <p>Welcome to the dental survey webpage.</p>
+    <p>This page will allow users to capture clinic data.</p>
 </asp:Content>
