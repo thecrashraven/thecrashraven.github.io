@@ -11,24 +11,24 @@
     <p>Ethnicity&nbsp;&nbsp; </p>
     <p>    
         <asp:DropDownList ID="DropDownList2" runat="server">
-            <asp:ListItem>Caucasian</asp:ListItem>
-            <asp:ListItem>African American</asp:ListItem>
-            <asp:ListItem>Native American</asp:ListItem>
-            <asp:ListItem>Asian</asp:ListItem>
-            <asp:ListItem>Pacific Islander</asp:ListItem>
-            <asp:ListItem>Other</asp:ListItem>
+            <asp:ListItem Value="1">Caucasian</asp:ListItem>
+            <asp:ListItem Value="2">African American</asp:ListItem>
+            <asp:ListItem Value="3">Native American</asp:ListItem>
+            <asp:ListItem Value="4">Asian</asp:ListItem>
+            <asp:ListItem Value="5">Pacific Islander</asp:ListItem>
+            <asp:ListItem Value="6">Other</asp:ListItem>
         </asp:DropDownList>
         </p>
     <p>Gender&nbsp;&nbsp; </p>
     <p>    
         <asp:DropDownList ID="DropDownList1" runat="server">
-            <asp:ListItem Value ="Male">
+            <asp:ListItem Value ="1">
             
-            </asp:ListItem>
+            Male</asp:ListItem>
 
-            <asp:ListItem Value ="Female">
+            <asp:ListItem Value ="2">
             
-            </asp:ListItem>
+            Female</asp:ListItem>
 
         </asp:DropDownList>
         </p>
