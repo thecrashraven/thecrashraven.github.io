@@ -23,22 +23,22 @@ Partial Public Class Survey
     Protected WithEvents Chart_Number As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
-    '''DropDownList2 control.
+    '''Ethnicitiy control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents DropDownList2 As Global.System.Web.UI.WebControls.DropDownList
+    Protected WithEvents Ethnicitiy As Global.System.Web.UI.WebControls.DropDownList
     
     '''<summary>
-    '''DropDownList1 control.
+    '''Gender control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents DropDownList1 As Global.System.Web.UI.WebControls.DropDownList
+    Protected WithEvents Gender As Global.System.Web.UI.WebControls.DropDownList
     
     '''<summary>
     '''Zip control.
@@ -59,11 +59,11 @@ Partial Public Class Survey
     Protected WithEvents Birthday As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
-    '''Button1 control.
+    '''SubmitButton control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Button1 As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents SubmitButton As Global.System.Web.UI.WebControls.Button
 End Class
