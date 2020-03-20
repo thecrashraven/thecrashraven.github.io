@@ -10,6 +10,8 @@
 Imports System
 Imports System.Data.Entity
 Imports System.Data.Entity.Infrastructure
+Imports System.Data.Entity.Core.Objects
+Imports System.Linq
 
 Partial Public Class DentalSurveyEntities
     Inherits DbContext
@@ -24,6 +26,10 @@ Partial Public Class DentalSurveyEntities
 
     Public Overridable Property Ethnicity_Codes() As DbSet(Of Ethnicity_Codes)
     Public Overridable Property Gender_Codes() As DbSet(Of Gender_Codes)
-    Public Overridable Property Surveys() As DbSet(Of SurveyPage)
+    Public Overridable Property Surveys() As DbSet(Of Survey)
+
+    Public Overridable Function dbo_usp_GetSurveyData() As ObjectResult(Of dbo_usp_GetSurveyData_Result)
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of dbo_usp_GetSurveyData_Result)("dbo_usp_GetSurveyData")
+    End Function
 
 End Class
