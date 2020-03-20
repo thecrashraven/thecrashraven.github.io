@@ -260,7 +260,6 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="ViewSurveyPage.aspx" />
     <Content Include="SurveyPage.aspx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -460,13 +459,6 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Startup.vb" />
-    <Compile Include="ViewSurveyPage.aspx.designer.vb">
-      <DependentUpon>ViewSurveyPage.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ViewSurveyPage.aspx.vb">
-      <DependentUpon>ViewSurveyPage.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
     <Compile Include="SurveyPage.aspx.designer.vb">
       <DependentUpon>SurveyPage.aspx</DependentUpon>
     </Compile>
