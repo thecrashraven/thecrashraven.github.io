@@ -1,4 +1,4 @@
-﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="ViewSurveyPage.aspx.vb" Inherits="DentalSurvey.WebForm1" %>
+﻿<%@ Page Title="ViewSurveyPage" Language="VB" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ViewSurveyPage.aspx.vb" Inherits="DentalSurvey.ViewSurveyPage" %>
 
 <!DOCTYPE html>
 
