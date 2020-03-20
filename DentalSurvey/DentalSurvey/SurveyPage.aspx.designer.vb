@@ -41,6 +41,15 @@ Partial Public Class SurveyPage
     Protected WithEvents SqlDataSource1 As Global.System.Web.UI.WebControls.SqlDataSource
 
     '''<summary>
+    '''GenderList control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents GenderList As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
     '''Gender_DataSource control.
     '''</summary>
     '''<remarks>
@@ -57,6 +66,15 @@ Partial Public Class SurveyPage
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Zip As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''BirthdayList control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents BirthdayList As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''SubmitButton control.

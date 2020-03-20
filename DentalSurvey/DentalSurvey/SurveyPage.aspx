@@ -11,33 +11,19 @@
     <p>Ethnicity&nbsp;&nbsp; </p>
     <p>    
         <asp:DropDownList ID="Ethnicitiy" runat="server" DataSourceID="SqlDataSource1" DataTextField="Ethnicity_Desc" DataValueField="Ethnicity_ID">
-            <asp:ListItem Value="1">Caucasian</asp:ListItem>
-            <asp:ListItem Value="2">African American</asp:ListItem>
-            <asp:ListItem Value="3">Native American</asp:ListItem>
-            <asp:ListItem Value="4">Asian</asp:ListItem>
-            <asp:ListItem Value="5">Pacific Islander</asp:ListItem>
-            <asp:ListItem Value="6">Other</asp:ListItem>
         </asp:DropDownList>
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Ethnicity_Codes]"></asp:SqlDataSource>
         </p>
     <p>Gender&nbsp;&nbsp; </p>
     <p>    
-        <asp:DropDownList ID="Gender" runat="server" DataSourceID="Gender_DataSource" DataTextField="Gender_Desc" DataValueField="Gender_ID">
-            <asp:ListItem Value ="1">
-            
-            Male</asp:ListItem>
-
-            <asp:ListItem Value ="2">
-            
-            Female</asp:ListItem>
-
+        <asp:DropDownList ID="GenderList" runat="server" DataSourceID="Gender_DataSource" DataTextField="Gender_Desc" DataValueField="Gender_ID">
         </asp:DropDownList>
         <asp:SqlDataSource ID="Gender_DataSource" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Gender_Codes]"></asp:SqlDataSource>
         </p>
     <p>Zip Code&nbsp;&nbsp; </p>
     <p>    <asp:TextBox ID="Zip" runat="server"></asp:TextBox> </p>
     <p>Birthday&nbsp;&nbsp; </p>
-    <p>    <asp:TextBox ID="Birthday" runat="server"></asp:TextBox> </p>
+    <p>    <asp:TextBox ID="BirthdayList" runat="server"></asp:TextBox> </p>
 
     <p>
         <asp:Button ID="SubmitButton" runat="server" Text="Submit Form" />
