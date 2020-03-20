@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DentalSurveyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Ethnicity_Codes">
+          <Key>
+            <PropertyRef Name="Ethnicity_ID" />
+          </Key>
+          <Property Name="Ethnicity_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ethnicity_Desc" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Gender_Codes">
+          <Key>
+            <PropertyRef Name="Gender_ID" />
+          </Key>
+          <Property Name="Gender_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Gender_Desc" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Survey">
+          <Key>
+            <PropertyRef Name="Record" />
+          </Key>
+          <Property Name="Record" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ChartNum" Type="varchar" MaxLength="10" />
+          <Property Name="Ethnicity" Type="int" />
+          <Property Name="Gender" Type="int" />
+          <Property Name="ZipCode" Type="int" />
+          <Property Name="Birthday" Type="smalldatetime" />
+        </EntityType>
+        <EntityContainer Name="DentalSurveyModelStoreContainer">
+          <EntitySet Name="Ethnicity_Codes" EntityType="Self.Ethnicity_Codes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gender_Codes" EntityType="Self.Gender_Codes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Survey" EntityType="Self.Survey" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DentalSurveyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Ethnicity_Codes">
+          <Key>
+            <PropertyRef Name="Ethnicity_ID" />
+          </Key>
+          <Property Name="Ethnicity_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ethnicity_Desc" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Gender_Codes">
+          <Key>
+            <PropertyRef Name="Gender_ID" />
+          </Key>
+          <Property Name="Gender_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Gender_Desc" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Survey">
+          <Key>
+            <PropertyRef Name="Record" />
+          </Key>
+          <Property Name="Record" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ChartNum" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Ethnicity" Type="Int32" />
+          <Property Name="Gender" Type="Int32" />
+          <Property Name="ZipCode" Type="Int32" />
+          <Property Name="Birthday" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityContainer Name="DentalSurveyEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Ethnicity_Codes" EntityType="Self.Ethnicity_Codes" />
+          <EntitySet Name="Gender_Codes" EntityType="Self.Gender_Codes" />
+          <EntitySet Name="Surveys" EntityType="Self.Survey" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DentalSurveyModelStoreContainer" CdmEntityContainer="DentalSurveyEntities">
+          <EntitySetMapping Name="Ethnicity_Codes">
+            <EntityTypeMapping TypeName="DentalSurveyModel.Ethnicity_Codes">
+              <MappingFragment StoreEntitySet="Ethnicity_Codes">
+                <ScalarProperty Name="Ethnicity_ID" ColumnName="Ethnicity_ID" />
+                <ScalarProperty Name="Ethnicity_Desc" ColumnName="Ethnicity_Desc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gender_Codes">
+            <EntityTypeMapping TypeName="DentalSurveyModel.Gender_Codes">
+              <MappingFragment StoreEntitySet="Gender_Codes">
+                <ScalarProperty Name="Gender_ID" ColumnName="Gender_ID" />
+                <ScalarProperty Name="Gender_Desc" ColumnName="Gender_Desc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Surveys">
+            <EntityTypeMapping TypeName="DentalSurveyModel.Survey">
+              <MappingFragment StoreEntitySet="Survey">
+                <ScalarProperty Name="Record" ColumnName="Record" />
+                <ScalarProperty Name="ChartNum" ColumnName="ChartNum" />
+                <ScalarProperty Name="Ethnicity" ColumnName="Ethnicity" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
