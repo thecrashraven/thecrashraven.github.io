@@ -11,8 +11,8 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class Survey
-    
+Partial Public Class SurveyPage
+
     '''<summary>
     '''Chart_Number control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class Survey
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Chart_Number As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''Ethnicitiy control.
     '''</summary>
@@ -30,16 +30,25 @@ Partial Public Class Survey
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Ethnicitiy As Global.System.Web.UI.WebControls.DropDownList
-    
+
     '''<summary>
-    '''Gender control.
+    '''SqlDataSource1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Gender As Global.System.Web.UI.WebControls.DropDownList
-    
+    Protected WithEvents SqlDataSource1 As Global.System.Web.UI.WebControls.SqlDataSource
+
+    '''<summary>
+    '''Gender_DataSource control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Gender_DataSource As Global.System.Web.UI.WebControls.SqlDataSource
+
     '''<summary>
     '''Zip control.
     '''</summary>
@@ -48,16 +57,7 @@ Partial Public Class Survey
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Zip As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''Birthday control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Birthday As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''SubmitButton control.
     '''</summary>

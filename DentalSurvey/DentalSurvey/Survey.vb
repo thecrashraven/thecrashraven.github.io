@@ -10,7 +10,7 @@
 Imports System
 Imports System.Collections.Generic
 
-Partial Public Class Survey
+Partial Public Class SurveyPage
     Public Property Record As Integer
     Public Property ChartNum As String
     Public Property Ethnicity As Nullable(Of Integer)

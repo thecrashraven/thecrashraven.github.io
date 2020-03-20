@@ -24,6 +24,6 @@ Partial Public Class DentalSurveyEntities
 
     Public Overridable Property Ethnicity_Codes() As DbSet(Of Ethnicity_Codes)
     Public Overridable Property Gender_Codes() As DbSet(Of Gender_Codes)
-    Public Overridable Property Surveys() As DbSet(Of Survey)
+    Public Overridable Property Surveys() As DbSet(Of SurveyPage)
 
 End Class
