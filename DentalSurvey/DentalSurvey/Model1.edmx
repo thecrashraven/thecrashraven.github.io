@@ -161,6 +161,17 @@ warning 6002: The table/view 'C:\USERS\SCOTT.FARNEY\SOURCE\REPOS\THECRASHRAVEN\T
                 <ScalarProperty Name="Birthday" ColumnName="Birthday" />
               </MappingFragment>
             </EntityTypeMapping>
+            <EntityTypeMapping TypeName="DentalSurveyModel.Survey">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="DentalSurveyModel.Store.dbo_usp_InsertSurveyData">
+                  <ScalarProperty Name="Birthday" ParameterName="Birthday" />
+                  <ScalarProperty Name="ZipCode" ParameterName="ZipCode" />
+                  <ScalarProperty Name="Gender" ParameterName="Gender" />
+                  <ScalarProperty Name="Ethnicity" ParameterName="Ethnicity" />
+                  <ScalarProperty Name="ChartNum" ParameterName="ChartNum" />
+                </InsertFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="dbo_usp_GetSurveyData" FunctionName="DentalSurveyModel.Store.dbo_usp_GetSurveyData">
             <ResultMapping>
