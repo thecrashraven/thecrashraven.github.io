@@ -30,11 +30,41 @@
           <Property Name="ZipCode" Type="int" />
           <Property Name="Birthday" Type="smalldatetime" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'C:\USERS\SCOTT.FARNEY\SOURCE\REPOS\THECRASHRAVEN\THECRASHRAVEN.GITHUB.IO\DENTALSURVEY\DENTALSURVEY\APP_DATA\DENTALSURVEY.MDF.dbo.vw_Survey' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_Survey">
+          <Key>
+            <PropertyRef Name="Record" />
+          </Key>
+          <Property Name="Record" Type="int" Nullable="false" />
+          <Property Name="ChartNum" Type="varchar" MaxLength="10" />
+          <Property Name="Ethnicity_Desc" Type="varchar" MaxLength="100" />
+          <Property Name="Gender_Desc" Type="varchar" MaxLength="10" />
+          <Property Name="ZipCode" Type="int" />
+          <Property Name="Birthday" Type="smalldatetime" />
+        </EntityType>
         <Function Name="dbo_usp_GetSurveyData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="dbo.usp_GetSurveyData" />
+        <Function Name="dbo_usp_InsertSurveyData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="dbo.usp_InsertSurveyData">
+          <Parameter Name="ChartNum" Type="varchar" Mode="In" />
+          <Parameter Name="Ethnicity" Type="int" Mode="In" />
+          <Parameter Name="Gender" Type="int" Mode="In" />
+          <Parameter Name="ZipCode" Type="int" Mode="In" />
+          <Parameter Name="Birthday" Type="smalldatetime" Mode="In" />
+        </Function>
         <EntityContainer Name="DentalSurveyModelStoreContainer">
           <EntitySet Name="Ethnicity_Codes" EntityType="Self.Ethnicity_Codes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Gender_Codes" EntityType="Self.Gender_Codes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Survey" EntityType="Self.Survey" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vw_Survey" EntityType="Self.vw_Survey" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_Survey].[Record] AS [Record], 
+    [vw_Survey].[ChartNum] AS [ChartNum], 
+    [vw_Survey].[Ethnicity_Desc] AS [Ethnicity_Desc], 
+    [vw_Survey].[Gender_Desc] AS [Gender_Desc], 
+    [vw_Survey].[ZipCode] AS [ZipCode], 
+    [vw_Survey].[Birthday] AS [Birthday]
+    FROM [dbo].[vw_Survey] AS [vw_Survey]</DefiningQuery>
+          </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -70,6 +100,14 @@
           <EntitySet Name="Gender_Codes" EntityType="Self.Gender_Codes" />
           <EntitySet Name="Surveys" EntityType="Self.Survey" />
           <FunctionImport Name="dbo_usp_GetSurveyData" ReturnType="Collection(DentalSurveyModel.dbo_usp_GetSurveyData_Result)" />
+          <FunctionImport Name="dbo_usp_InsertSurveyData">
+            <Parameter Name="ChartNum" Mode="In" Type="String" />
+            <Parameter Name="Ethnicity" Mode="In" Type="Int32" />
+            <Parameter Name="Gender" Mode="In" Type="Int32" />
+            <Parameter Name="ZipCode" Mode="In" Type="Int32" />
+            <Parameter Name="Birthday" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <EntitySet Name="vw_Survey" EntityType="DentalSurveyModel.vw_Survey" />
         </EntityContainer>
         <ComplexType Name="dbo_usp_GetSurveyData_Result">
           <Property Type="Int32" Name="Record" Nullable="false" />
@@ -79,6 +117,17 @@
           <Property Type="Int32" Name="ZipCode" Nullable="true" />
           <Property Type="DateTime" Name="Birthday" Nullable="true" Precision="16" />
         </ComplexType>
+        <EntityType Name="vw_Survey">
+          <Key>
+            <PropertyRef Name="Record" />
+          </Key>
+          <Property Name="Record" Type="Int32" Nullable="false" />
+          <Property Name="ChartNum" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Ethnicity_Desc" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Gender_Desc" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ZipCode" Type="Int32" />
+          <Property Name="Birthday" Type="DateTime" Precision="0" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -125,6 +174,19 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="dbo_usp_InsertSurveyData" FunctionName="DentalSurveyModel.Store.dbo_usp_InsertSurveyData" />
+          <EntitySetMapping Name="vw_Survey">
+            <EntityTypeMapping TypeName="DentalSurveyModel.vw_Survey">
+              <MappingFragment StoreEntitySet="vw_Survey">
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="Gender_Desc" ColumnName="Gender_Desc" />
+                <ScalarProperty Name="Ethnicity_Desc" ColumnName="Ethnicity_Desc" />
+                <ScalarProperty Name="ChartNum" ColumnName="ChartNum" />
+                <ScalarProperty Name="Record" ColumnName="Record" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
