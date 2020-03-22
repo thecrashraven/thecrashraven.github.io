@@ -47,4 +47,18 @@ Partial Public Class DentalSurveyEntities
         Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction("dbo_usp_InsertSurveyData", chartNumParameter, ethnicityParameter, genderParameter, zipCodeParameter, birthdayParameter)
     End Function
 
+    Public Overridable Function usp_InsertSurveyData(chartNum As String, ethnicity As Nullable(Of Integer), gender As Nullable(Of Integer), zipCode As Nullable(Of Integer), birthday As Nullable(Of Date)) As Integer
+        Dim chartNumParameter As ObjectParameter = If(chartNum IsNot Nothing, New ObjectParameter("ChartNum", chartNum), New ObjectParameter("ChartNum", GetType(String)))
+
+        Dim ethnicityParameter As ObjectParameter = If(ethnicity.HasValue, New ObjectParameter("Ethnicity", ethnicity), New ObjectParameter("Ethnicity", GetType(Integer)))
+
+        Dim genderParameter As ObjectParameter = If(gender.HasValue, New ObjectParameter("Gender", gender), New ObjectParameter("Gender", GetType(Integer)))
+
+        Dim zipCodeParameter As ObjectParameter = If(zipCode.HasValue, New ObjectParameter("ZipCode", zipCode), New ObjectParameter("ZipCode", GetType(Integer)))
+
+        Dim birthdayParameter As ObjectParameter = If(birthday.HasValue, New ObjectParameter("Birthday", birthday), New ObjectParameter("Birthday", GetType(Date)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction("usp_InsertSurveyData", chartNumParameter, ethnicityParameter, genderParameter, zipCodeParameter, birthdayParameter)
+    End Function
+
 End Class

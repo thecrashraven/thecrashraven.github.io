@@ -13,7 +13,7 @@ Public Class SurveyPage
 
         Dim con As New SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString)
 
-        Dim Command As New SqlCommand("dbo.usp_InsertSurveyData", con)
+        Dim Command As New SqlCommand("usp_InsertSurveyData", con)
         Command.CommandType = CommandType.StoredProcedure
         Command.Parameters.Add("@ChartNum", SqlDbType.VarChar, 10).Value = Chart_Number.Text
         Command.Parameters.Add("@Ethnicity", SqlDbType.Int).Value = Ethnicitiy.Text

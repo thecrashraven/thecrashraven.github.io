@@ -44,7 +44,7 @@ warning 6002: The table/view 'C:\USERS\SCOTT.FARNEY\SOURCE\REPOS\THECRASHRAVEN\T
           <Property Name="Birthday" Type="smalldatetime" />
         </EntityType>
         <Function Name="dbo_usp_GetSurveyData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="dbo.usp_GetSurveyData" />
-        <Function Name="dbo_usp_InsertSurveyData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="dbo.usp_InsertSurveyData">
+        <Function Name="usp_InsertSurveyData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ChartNum" Type="varchar" Mode="In" />
           <Parameter Name="Ethnicity" Type="int" Mode="In" />
           <Parameter Name="Gender" Type="int" Mode="In" />
@@ -108,6 +108,13 @@ warning 6002: The table/view 'C:\USERS\SCOTT.FARNEY\SOURCE\REPOS\THECRASHRAVEN\T
             <Parameter Name="Birthday" Mode="In" Type="DateTime" />
           </FunctionImport>
           <EntitySet Name="vw_Survey" EntityType="DentalSurveyModel.vw_Survey" />
+          <FunctionImport Name="usp_InsertSurveyData">
+            <Parameter Name="ChartNum" Mode="In" Type="String" />
+            <Parameter Name="Ethnicity" Mode="In" Type="Int32" />
+            <Parameter Name="Gender" Mode="In" Type="Int32" />
+            <Parameter Name="ZipCode" Mode="In" Type="Int32" />
+            <Parameter Name="Birthday" Mode="In" Type="DateTime" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="dbo_usp_GetSurveyData_Result">
           <Property Type="Int32" Name="Record" Nullable="false" />
@@ -161,17 +168,6 @@ warning 6002: The table/view 'C:\USERS\SCOTT.FARNEY\SOURCE\REPOS\THECRASHRAVEN\T
                 <ScalarProperty Name="Birthday" ColumnName="Birthday" />
               </MappingFragment>
             </EntityTypeMapping>
-            <EntityTypeMapping TypeName="DentalSurveyModel.Survey">
-              <ModificationFunctionMapping>
-                <InsertFunction FunctionName="DentalSurveyModel.Store.dbo_usp_InsertSurveyData">
-                  <ScalarProperty Name="Birthday" ParameterName="Birthday" />
-                  <ScalarProperty Name="ZipCode" ParameterName="ZipCode" />
-                  <ScalarProperty Name="Gender" ParameterName="Gender" />
-                  <ScalarProperty Name="Ethnicity" ParameterName="Ethnicity" />
-                  <ScalarProperty Name="ChartNum" ParameterName="ChartNum" />
-                </InsertFunction>
-              </ModificationFunctionMapping>
-            </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="dbo_usp_GetSurveyData" FunctionName="DentalSurveyModel.Store.dbo_usp_GetSurveyData">
             <ResultMapping>
@@ -185,7 +181,6 @@ warning 6002: The table/view 'C:\USERS\SCOTT.FARNEY\SOURCE\REPOS\THECRASHRAVEN\T
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="dbo_usp_InsertSurveyData" FunctionName="DentalSurveyModel.Store.dbo_usp_InsertSurveyData" />
           <EntitySetMapping Name="vw_Survey">
             <EntityTypeMapping TypeName="DentalSurveyModel.vw_Survey">
               <MappingFragment StoreEntitySet="vw_Survey">
@@ -198,6 +193,7 @@ warning 6002: The table/view 'C:\USERS\SCOTT.FARNEY\SOURCE\REPOS\THECRASHRAVEN\T
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="usp_InsertSurveyData" FunctionName="DentalSurveyModel.Store.usp_InsertSurveyData" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
