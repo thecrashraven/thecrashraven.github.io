@@ -4,11 +4,11 @@
         <Columns>
             <asp:BoundField DataField="Record" HeaderText="Record" InsertVisible="False" ReadOnly="True" SortExpression="Record" />
             <asp:BoundField DataField="ChartNum" HeaderText="ChartNum" SortExpression="ChartNum" />
-            <asp:BoundField DataField="Ethnicity" HeaderText="Ethnicity" SortExpression="Ethnicity" />
-            <asp:BoundField DataField="Gender" HeaderText="Gender" SortExpression="Gender" />
+            <asp:BoundField DataField="Ethnicity_Desc" HeaderText="Ethnicity" SortExpression="Ethnicity" />
+            <asp:BoundField DataField="Gender_Desc" HeaderText="Gender" SortExpression="Gender" />
             <asp:BoundField DataField="ZipCode" HeaderText="ZipCode" SortExpression="ZipCode" />
             <asp:BoundField DataField="Birthday" HeaderText="Birthday" SortExpression="Birthday" />
         </Columns>
     </asp:GridView>
-    <asp:SqlDataSource ID="SurveyDataGridDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Survey]"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SurveyDataGridDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [vw_Survey]"></asp:SqlDataSource>
 </asp:Content>

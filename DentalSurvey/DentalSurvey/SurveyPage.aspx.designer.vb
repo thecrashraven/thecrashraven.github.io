@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class SurveyPage
-
+    
     '''<summary>
     '''Chart_Number control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class SurveyPage
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Chart_Number As Global.System.Web.UI.WebControls.TextBox
-
+    
     '''<summary>
     '''Ethnicitiy control.
     '''</summary>
@@ -30,7 +30,7 @@ Partial Public Class SurveyPage
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Ethnicitiy As Global.System.Web.UI.WebControls.DropDownList
-
+    
     '''<summary>
     '''SqlDataSource1 control.
     '''</summary>
@@ -39,7 +39,7 @@ Partial Public Class SurveyPage
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents SqlDataSource1 As Global.System.Web.UI.WebControls.SqlDataSource
-
+    
     '''<summary>
     '''GenderList control.
     '''</summary>
@@ -48,7 +48,7 @@ Partial Public Class SurveyPage
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents GenderList As Global.System.Web.UI.WebControls.DropDownList
-
+    
     '''<summary>
     '''Gender_DataSource control.
     '''</summary>
@@ -57,7 +57,7 @@ Partial Public Class SurveyPage
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Gender_DataSource As Global.System.Web.UI.WebControls.SqlDataSource
-
+    
     '''<summary>
     '''Zip control.
     '''</summary>
@@ -66,7 +66,7 @@ Partial Public Class SurveyPage
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Zip As Global.System.Web.UI.WebControls.TextBox
-
+    
     '''<summary>
     '''BirthdayList control.
     '''</summary>
@@ -75,7 +75,7 @@ Partial Public Class SurveyPage
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents BirthdayList As Global.System.Web.UI.WebControls.TextBox
-
+    
     '''<summary>
     '''SubmitButton control.
     '''</summary>
