@@ -484,6 +484,9 @@
     <Compile Include="Survey.vb">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="usp_GetDentalCodes_Result.vb">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="usp_GetSurveyData_Result.vb">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

@@ -73,17 +73,20 @@ warning 6002: The table/view 'C:\USERS\SCOTT.FARNEY\SOURCE\REPOS\THECRASHRAVEN\T
           <Property Name="ZipCode" Type="int" />
           <Property Name="Birthday" Type="smalldatetime" />
         </EntityType>
-        <Function Name="fn_GetDentalCodes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <ReturnType>
-            <CollectionType>
-              <RowType>
-                <Property Name="Dental_Code" Type="nvarchar" MaxLength="10" Nullable="false" />
-                <Property Name="Dental_Code_Desc" Type="varchar" MaxLength="200" />
-              </RowType>
-            </CollectionType>
-          </ReturnType>
-        </Function>
+        <Function Name="usp_GetDentalCodes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="usp_GetSurveyData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_InsertClinicSites" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Site_Code" Type="varchar" Mode="In" />
+          <Parameter Name="State" Type="varchar" Mode="In" />
+          <Parameter Name="County" Type="varchar" Mode="In" />
+          <Parameter Name="Year" Type="int" Mode="In" />
+          <Parameter Name="Start_Date" Type="smalldatetime" Mode="In" />
+          <Parameter Name="End_Date" Type="smalldatetime" Mode="In" />
+        </Function>
+        <Function Name="usp_InsertDentalCodes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Dental_Code" Type="nvarchar" Mode="In" />
+          <Parameter Name="Dental_Code_Desc" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="usp_InsertSurveyData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ChartNum" Type="varchar" Mode="In" />
           <Parameter Name="Ethnicity" Type="int" Mode="In" />
@@ -163,6 +166,19 @@ warning 6002: The table/view 'C:\USERS\SCOTT.FARNEY\SOURCE\REPOS\THECRASHRAVEN\T
           <EntitySet Name="Dental_Codes" EntityType="DentalSurveyModel.Dental_Codes" />
           <FunctionImport Name="fn_GetDentalCodes" IsComposable="true" ReturnType="Collection(DentalSurveyModel.fn_GetDentalCodes_Result)" />
           <FunctionImport Name="usp_GetSurveyData" ReturnType="Collection(DentalSurveyModel.usp_GetSurveyData_Result)" />
+          <FunctionImport Name="usp_GetDentalCodes" ReturnType="Collection(DentalSurveyModel.usp_GetDentalCodes_Result)" />
+          <FunctionImport Name="usp_InsertClinicSites">
+            <Parameter Name="Site_Code" Mode="In" Type="String" />
+            <Parameter Name="State" Mode="In" Type="String" />
+            <Parameter Name="County" Mode="In" Type="String" />
+            <Parameter Name="Year" Mode="In" Type="Int32" />
+            <Parameter Name="Start_Date" Mode="In" Type="DateTime" />
+            <Parameter Name="End_Date" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="usp_InsertDentalCodes">
+            <Parameter Name="Dental_Code" Mode="In" Type="String" />
+            <Parameter Name="Dental_Code_Desc" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="dbo_usp_GetSurveyData_Result">
           <Property Type="Int32" Name="Record" Nullable="false" />
@@ -224,6 +240,10 @@ warning 6002: The table/view 'C:\USERS\SCOTT.FARNEY\SOURCE\REPOS\THECRASHRAVEN\T
           <Property Type="String" Name="Gender_Desc" Nullable="true" MaxLength="10" />
           <Property Type="Int32" Name="ZipCode" Nullable="true" />
           <Property Type="DateTime" Name="Birthday" Nullable="true" Precision="16" />
+        </ComplexType>
+        <ComplexType Name="usp_GetDentalCodes_Result">
+          <Property Type="String" Name="Dental_Code" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="Dental_Code_Desc" Nullable="true" MaxLength="200" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -302,14 +322,6 @@ warning 6002: The table/view 'C:\USERS\SCOTT.FARNEY\SOURCE\REPOS\THECRASHRAVEN\T
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="fn_GetDentalCodes" FunctionName="DentalSurveyModel.Store.fn_GetDentalCodes">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="DentalSurveyModel.fn_GetDentalCodes_Result">
-                <ScalarProperty Name="Dental_Code" ColumnName="Dental_Code" />
-                <ScalarProperty Name="Dental_Code_Desc" ColumnName="Dental_Code_Desc" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="usp_GetSurveyData" FunctionName="DentalSurveyModel.Store.usp_GetSurveyData">
             <ResultMapping>
               <ComplexTypeMapping TypeName="DentalSurveyModel.usp_GetSurveyData_Result">
@@ -322,6 +334,16 @@ warning 6002: The table/view 'C:\USERS\SCOTT.FARNEY\SOURCE\REPOS\THECRASHRAVEN\T
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_GetDentalCodes" FunctionName="DentalSurveyModel.Store.usp_GetDentalCodes">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DentalSurveyModel.usp_GetDentalCodes_Result">
+                <ScalarProperty Name="Dental_Code" ColumnName="Dental_Code" />
+                <ScalarProperty Name="Dental_Code_Desc" ColumnName="Dental_Code_Desc" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_InsertClinicSites" FunctionName="DentalSurveyModel.Store.usp_InsertClinicSites" />
+          <FunctionImportMapping FunctionImportName="usp_InsertDentalCodes" FunctionName="DentalSurveyModel.Store.usp_InsertDentalCodes" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
