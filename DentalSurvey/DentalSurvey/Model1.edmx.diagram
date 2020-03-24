@@ -9,6 +9,9 @@
         <EntityTypeShape EntityType="DentalSurveyModel.Gender_Codes" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DentalSurveyModel.Survey" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DentalSurveyModel.vw_Survey" Width="1.5" PointX="3.375" PointY="3.75" />
+        <EntityTypeShape EntityType="DentalSurveyModel.Clinic_Sites" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DentalSurveyModel.Dental_Code_Costs" Width="1.5" PointX="5.75" PointY="3.75" />
+        <EntityTypeShape EntityType="DentalSurveyModel.Dental_Codes" Width="1.5" PointX="0.75" PointY="6.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

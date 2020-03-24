@@ -5,6 +5,36 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="DentalSurveyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Clinic_Sites">
+          <Key>
+            <PropertyRef Name="Site_Code" />
+            <PropertyRef Name="Year" />
+          </Key>
+          <Property Name="Site_Code" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="State" Type="varchar" MaxLength="2" />
+          <Property Name="County" Type="varchar" MaxLength="100" />
+          <Property Name="Year" Type="int" Nullable="false" />
+          <Property Name="Start_Date" Type="smalldatetime" />
+          <Property Name="End_Date" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="Dental_Code_Costs">
+          <Key>
+            <PropertyRef Name="Dental_Code" />
+            <PropertyRef Name="Site_Code" />
+            <PropertyRef Name="Year" />
+          </Key>
+          <Property Name="Dental_Code" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Site_Code" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Year" Type="int" Nullable="false" />
+          <Property Name="Cost" Type="numeric" Precision="16" Scale="2" />
+        </EntityType>
+        <EntityType Name="Dental_Codes">
+          <Key>
+            <PropertyRef Name="Dental_Code" />
+          </Key>
+          <Property Name="Dental_Code" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Dental_Code_Desc" Type="varchar" MaxLength="200" />
+        </EntityType>
         <EntityType Name="Ethnicity_Codes">
           <Key>
             <PropertyRef Name="Ethnicity_ID" />
@@ -43,7 +73,17 @@ warning 6002: The table/view 'C:\USERS\SCOTT.FARNEY\SOURCE\REPOS\THECRASHRAVEN\T
           <Property Name="ZipCode" Type="int" />
           <Property Name="Birthday" Type="smalldatetime" />
         </EntityType>
-        <Function Name="dbo_usp_GetSurveyData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="dbo.usp_GetSurveyData" />
+        <Function Name="fn_GetDentalCodes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Dental_Code" Type="nvarchar" MaxLength="10" Nullable="false" />
+                <Property Name="Dental_Code_Desc" Type="varchar" MaxLength="200" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="usp_GetSurveyData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="usp_InsertSurveyData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ChartNum" Type="varchar" Mode="In" />
           <Parameter Name="Ethnicity" Type="int" Mode="In" />
@@ -52,6 +92,9 @@ warning 6002: The table/view 'C:\USERS\SCOTT.FARNEY\SOURCE\REPOS\THECRASHRAVEN\T
           <Parameter Name="Birthday" Type="smalldatetime" Mode="In" />
         </Function>
         <EntityContainer Name="DentalSurveyModelStoreContainer">
+          <EntitySet Name="Clinic_Sites" EntityType="Self.Clinic_Sites" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Dental_Code_Costs" EntityType="Self.Dental_Code_Costs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Dental_Codes" EntityType="Self.Dental_Codes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ethnicity_Codes" EntityType="Self.Ethnicity_Codes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Gender_Codes" EntityType="Self.Gender_Codes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Survey" EntityType="Self.Survey" Schema="dbo" store:Type="Tables" />
@@ -115,6 +158,11 @@ warning 6002: The table/view 'C:\USERS\SCOTT.FARNEY\SOURCE\REPOS\THECRASHRAVEN\T
             <Parameter Name="ZipCode" Mode="In" Type="Int32" />
             <Parameter Name="Birthday" Mode="In" Type="DateTime" />
           </FunctionImport>
+          <EntitySet Name="Clinic_Sites" EntityType="DentalSurveyModel.Clinic_Sites" />
+          <EntitySet Name="Dental_Code_Costs" EntityType="DentalSurveyModel.Dental_Code_Costs" />
+          <EntitySet Name="Dental_Codes" EntityType="DentalSurveyModel.Dental_Codes" />
+          <FunctionImport Name="fn_GetDentalCodes" IsComposable="true" ReturnType="Collection(DentalSurveyModel.fn_GetDentalCodes_Result)" />
+          <FunctionImport Name="usp_GetSurveyData" ReturnType="Collection(DentalSurveyModel.usp_GetSurveyData_Result)" />
         </EntityContainer>
         <ComplexType Name="dbo_usp_GetSurveyData_Result">
           <Property Type="Int32" Name="Record" Nullable="false" />
@@ -135,6 +183,48 @@ warning 6002: The table/view 'C:\USERS\SCOTT.FARNEY\SOURCE\REPOS\THECRASHRAVEN\T
           <Property Name="ZipCode" Type="Int32" />
           <Property Name="Birthday" Type="DateTime" Precision="0" />
         </EntityType>
+        <EntityType Name="Clinic_Sites">
+          <Key>
+            <PropertyRef Name="Site_Code" />
+            <PropertyRef Name="Year" />
+          </Key>
+          <Property Name="Site_Code" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="County" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Year" Type="Int32" Nullable="false" />
+          <Property Name="Start_Date" Type="DateTime" Precision="0" />
+          <Property Name="End_Date" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="Dental_Code_Costs">
+          <Key>
+            <PropertyRef Name="Dental_Code" />
+            <PropertyRef Name="Site_Code" />
+            <PropertyRef Name="Year" />
+          </Key>
+          <Property Name="Dental_Code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Site_Code" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Year" Type="Int32" Nullable="false" />
+          <Property Name="Cost" Type="Decimal" Precision="16" Scale="2" />
+        </EntityType>
+        <EntityType Name="Dental_Codes">
+          <Key>
+            <PropertyRef Name="Dental_Code" />
+          </Key>
+          <Property Name="Dental_Code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Dental_Code_Desc" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <ComplexType Name="fn_GetDentalCodes_Result">
+          <Property Type="String" Name="Dental_Code" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="Dental_Code_Desc" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="usp_GetSurveyData_Result">
+          <Property Type="Int32" Name="Record" Nullable="false" />
+          <Property Type="String" Name="ChartNum" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="Ethnicity_Desc" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Gender_Desc" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="ZipCode" Nullable="true" />
+          <Property Type="DateTime" Name="Birthday" Nullable="true" Precision="16" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -169,18 +259,6 @@ warning 6002: The table/view 'C:\USERS\SCOTT.FARNEY\SOURCE\REPOS\THECRASHRAVEN\T
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="dbo_usp_GetSurveyData" FunctionName="DentalSurveyModel.Store.dbo_usp_GetSurveyData">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="DentalSurveyModel.dbo_usp_GetSurveyData_Result">
-                <ScalarProperty Name="Record" ColumnName="Record" />
-                <ScalarProperty Name="ChartNum" ColumnName="ChartNum" />
-                <ScalarProperty Name="Ethnicity" ColumnName="Ethnicity" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
-                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <EntitySetMapping Name="vw_Survey">
             <EntityTypeMapping TypeName="DentalSurveyModel.vw_Survey">
               <MappingFragment StoreEntitySet="vw_Survey">
@@ -194,6 +272,56 @@ warning 6002: The table/view 'C:\USERS\SCOTT.FARNEY\SOURCE\REPOS\THECRASHRAVEN\T
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="usp_InsertSurveyData" FunctionName="DentalSurveyModel.Store.usp_InsertSurveyData" />
+          <EntitySetMapping Name="Clinic_Sites">
+            <EntityTypeMapping TypeName="DentalSurveyModel.Clinic_Sites">
+              <MappingFragment StoreEntitySet="Clinic_Sites">
+                <ScalarProperty Name="End_Date" ColumnName="End_Date" />
+                <ScalarProperty Name="Start_Date" ColumnName="Start_Date" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="County" ColumnName="County" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Site_Code" ColumnName="Site_Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dental_Code_Costs">
+            <EntityTypeMapping TypeName="DentalSurveyModel.Dental_Code_Costs">
+              <MappingFragment StoreEntitySet="Dental_Code_Costs">
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Site_Code" ColumnName="Site_Code" />
+                <ScalarProperty Name="Dental_Code" ColumnName="Dental_Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dental_Codes">
+            <EntityTypeMapping TypeName="DentalSurveyModel.Dental_Codes">
+              <MappingFragment StoreEntitySet="Dental_Codes">
+                <ScalarProperty Name="Dental_Code_Desc" ColumnName="Dental_Code_Desc" />
+                <ScalarProperty Name="Dental_Code" ColumnName="Dental_Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="fn_GetDentalCodes" FunctionName="DentalSurveyModel.Store.fn_GetDentalCodes">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DentalSurveyModel.fn_GetDentalCodes_Result">
+                <ScalarProperty Name="Dental_Code" ColumnName="Dental_Code" />
+                <ScalarProperty Name="Dental_Code_Desc" ColumnName="Dental_Code_Desc" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_GetSurveyData" FunctionName="DentalSurveyModel.Store.usp_GetSurveyData">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DentalSurveyModel.usp_GetSurveyData_Result">
+                <ScalarProperty Name="Record" ColumnName="Record" />
+                <ScalarProperty Name="ChartNum" ColumnName="ChartNum" />
+                <ScalarProperty Name="Ethnicity_Desc" ColumnName="Ethnicity_Desc" />
+                <ScalarProperty Name="Gender_Desc" ColumnName="Gender_Desc" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
