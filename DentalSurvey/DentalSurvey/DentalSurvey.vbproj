@@ -211,6 +211,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Account\Web.config" />
     <Content Include="ViewSurveyPage.aspx" />
+    <Content Include="ViewDentalCodes.aspx" />
     <EntityDeploy Include="Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.vb</LastGenOutput>
@@ -508,6 +509,13 @@
     </Compile>
     <Compile Include="vw_Survey.vb">
       <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewDentalCodes.aspx.designer.vb">
+      <DependentUpon>ViewDentalCodes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewDentalCodes.aspx.vb">
+      <DependentUpon>ViewDentalCodes.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
