@@ -6,5 +6,5 @@
         <asp:BoundField DataField="Dental_Code_Desc" HeaderText="Dental_Code_Desc" SortExpression="Dental_Code_Desc" />
     </Columns>
 </asp:GridView>
-<asp:SqlDataSource ID="DentalCodes" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Dental_Codes]"></asp:SqlDataSource>
+<asp:SqlDataSource ID="DentalCodes" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="usp_GetDentalCodes" SelectCommandType="StoredProcedure"></asp:SqlDataSource>
 </asp:Content>
