@@ -213,6 +213,9 @@
     <Content Include="ViewSurveyPage.aspx" />
     <Content Include="ViewDentalCodes.aspx" />
     <Content Include="ViewClinicSites.aspx" />
+    <Content Include="AddClinicSite.aspx" />
+    <Content Include="AddDentalCode.aspx" />
+    <Content Include="AddUpdateDentalCodeCosts.aspx" />
     <EntityDeploy Include="Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.vb</LastGenOutput>
@@ -526,6 +529,27 @@
     </Compile>
     <Compile Include="ViewClinicSites.aspx.vb">
       <DependentUpon>ViewClinicSites.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="AddClinicSite.aspx.designer.vb">
+      <DependentUpon>AddClinicSite.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddClinicSite.aspx.vb">
+      <DependentUpon>AddClinicSite.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="AddDentalCode.aspx.designer.vb">
+      <DependentUpon>AddDentalCode.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddDentalCode.aspx.vb">
+      <DependentUpon>AddDentalCode.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="AddUpdateDentalCodeCosts.aspx.designer.vb">
+      <DependentUpon>AddUpdateDentalCodeCosts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddUpdateDentalCodeCosts.aspx.vb">
+      <DependentUpon>AddUpdateDentalCodeCosts.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
   </ItemGroup>

@@ -46,5 +46,15 @@
         <asp:CommandField ButtonType="Button" ShowEditButton="True" />
     </Columns>
 </asp:GridView>
-<asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Clinic_Sites]"></asp:SqlDataSource>
+<asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Clinic_Sites]"
+    UpdateCommand =" Update Clinic_Sites set State = @State, County = @County, Start_Date = @Start_Date, End_Date = @End_Date where Site_Code = @Site_Code and Year = @Year">
+    <UpdateParameters>
+        <asp:Parameter Name ="Site_Code" Type ="String" />
+        <asp:Parameter Name ="State" Type ="String" />
+        <asp:Parameter Name ="County" Type ="String" />
+        <asp:Parameter Name ="Year" Type ="Int16" />
+        <asp:Parameter Name ="Start_Date" Type ="DateTime" />
+        <asp:Parameter Name ="End_Date" Type ="DateTime" />
+    </UpdateParameters>
+</asp:SqlDataSource>
 </asp:Content>
