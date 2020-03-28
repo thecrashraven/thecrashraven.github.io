@@ -11,16 +11,16 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class AddUpdateDentalCodeCosts
+Partial Public Class AddUserCodes
     
     '''<summary>
-    '''ListView1 control.
+    '''FormView1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ListView1 As Global.System.Web.UI.WebControls.ListView
+    Protected WithEvents FormView1 As Global.System.Web.UI.WebControls.FormView
     
     '''<summary>
     '''SqlDataSource1 control.

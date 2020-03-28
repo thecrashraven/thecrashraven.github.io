@@ -31,6 +31,7 @@ Partial Public Class DentalSurveyEntities
     Public Overridable Property Clinic_Sites() As DbSet(Of Clinic_Sites)
     Public Overridable Property Dental_Code_Costs() As DbSet(Of Dental_Code_Costs)
     Public Overridable Property Dental_Codes() As DbSet(Of Dental_Codes)
+    Public Overridable Property SurveyUserCosts() As DbSet(Of SurveyUserCost)
 
     Public Overridable Function dbo_usp_GetSurveyData() As ObjectResult(Of dbo_usp_GetSurveyData_Result)
         Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of dbo_usp_GetSurveyData_Result)("dbo_usp_GetSurveyData")

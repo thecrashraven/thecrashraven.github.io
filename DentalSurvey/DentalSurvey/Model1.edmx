@@ -60,6 +60,15 @@
           <Property Name="ZipCode" Type="int" />
           <Property Name="Birthday" Type="smalldatetime" />
         </EntityType>
+        <EntityType Name="SurveyUserCosts">
+          <Key>
+            <PropertyRef Name="Record" />
+            <PropertyRef Name="Dental_Code" />
+          </Key>
+          <Property Name="Record" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Dental_Code" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Quantity" Type="int" />
+        </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'C:\USERS\SCOTT.FARNEY\SOURCE\REPOS\THECRASHRAVEN\THECRASHRAVEN.GITHUB.IO\DENTALSURVEY\DENTALSURVEY\APP_DATA\DENTALSURVEY.MDF.dbo.vw_Survey' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="vw_Survey">
@@ -109,6 +118,7 @@ warning 6002: The table/view 'C:\USERS\SCOTT.FARNEY\SOURCE\REPOS\THECRASHRAVEN\T
           <EntitySet Name="Ethnicity_Codes" EntityType="Self.Ethnicity_Codes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Gender_Codes" EntityType="Self.Gender_Codes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Survey" EntityType="Self.Survey" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SurveyUserCosts" EntityType="Self.SurveyUserCosts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="vw_Survey" EntityType="Self.vw_Survey" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [vw_Survey].[Record] AS [Record], 
@@ -195,6 +205,7 @@ warning 6002: The table/view 'C:\USERS\SCOTT.FARNEY\SOURCE\REPOS\THECRASHRAVEN\T
             <Parameter Name="Start_Date" Mode="In" Type="DateTime" />
             <Parameter Name="End_Date" Mode="In" Type="DateTime" />
           </FunctionImport>
+          <EntitySet Name="SurveyUserCosts" EntityType="DentalSurveyModel.SurveyUserCost" />
         </EntityContainer>
         <ComplexType Name="dbo_usp_GetSurveyData_Result">
           <Property Type="Int32" Name="Record" Nullable="false" />
@@ -261,6 +272,15 @@ warning 6002: The table/view 'C:\USERS\SCOTT.FARNEY\SOURCE\REPOS\THECRASHRAVEN\T
           <Property Type="String" Name="Dental_Code" Nullable="false" MaxLength="10" />
           <Property Type="String" Name="Dental_Code_Desc" Nullable="true" MaxLength="200" />
         </ComplexType>
+        <EntityType Name="SurveyUserCost">
+          <Key>
+            <PropertyRef Name="Record" />
+            <PropertyRef Name="Dental_Code" />
+          </Key>
+          <Property Name="Record" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Dental_Code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Quantity" Type="Int32" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -373,6 +393,15 @@ warning 6002: The table/view 'C:\USERS\SCOTT.FARNEY\SOURCE\REPOS\THECRASHRAVEN\T
           <FunctionImportMapping FunctionImportName="usp_InsertClinicSites" FunctionName="DentalSurveyModel.Store.usp_InsertClinicSites" />
           <FunctionImportMapping FunctionImportName="usp_InsertDentalCodes" FunctionName="DentalSurveyModel.Store.usp_InsertDentalCodes" />
           <FunctionImportMapping FunctionImportName="usp_UpdateClinicSites" FunctionName="DentalSurveyModel.Store.usp_UpdateClinicSites" />
+          <EntitySetMapping Name="SurveyUserCosts">
+            <EntityTypeMapping TypeName="DentalSurveyModel.SurveyUserCost">
+              <MappingFragment StoreEntitySet="SurveyUserCosts">
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Dental_Code" ColumnName="Dental_Code" />
+                <ScalarProperty Name="Record" ColumnName="Record" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
