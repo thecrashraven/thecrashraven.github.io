@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Add Dental Code" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="AddDentalCode.aspx.vb" Inherits="DentalSurvey.DentalCode" %>
+﻿<%@ Page Title="Add Dental Code" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="AddDentalCode.aspx.vb" Inherits="DentalSurvey.AddDentalCode" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <asp:FormView ID="FormView1" runat="server" DataKeyNames="Dental_Code" DataSourceID="SqlDataSource1" DefaultMode="Insert">
         <EditItemTemplate>

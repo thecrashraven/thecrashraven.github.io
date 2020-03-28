@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class DentalCode
+Partial Public Class AddDentalCode
     
     '''<summary>
     '''FormView1 control.
