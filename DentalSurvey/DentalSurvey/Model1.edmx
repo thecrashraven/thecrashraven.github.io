@@ -94,6 +94,14 @@ warning 6002: The table/view 'C:\USERS\SCOTT.FARNEY\SOURCE\REPOS\THECRASHRAVEN\T
           <Parameter Name="ZipCode" Type="int" Mode="In" />
           <Parameter Name="Birthday" Type="smalldatetime" Mode="In" />
         </Function>
+        <Function Name="usp_UpdateClinicSites" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Site_Code" Type="varchar" Mode="In" />
+          <Parameter Name="State" Type="varchar" Mode="In" />
+          <Parameter Name="County" Type="varchar" Mode="In" />
+          <Parameter Name="Year" Type="int" Mode="In" />
+          <Parameter Name="Start_Date" Type="smalldatetime" Mode="In" />
+          <Parameter Name="End_Date" Type="smalldatetime" Mode="In" />
+        </Function>
         <EntityContainer Name="DentalSurveyModelStoreContainer">
           <EntitySet Name="Clinic_Sites" EntityType="Self.Clinic_Sites" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Dental_Code_Costs" EntityType="Self.Dental_Code_Costs" Schema="dbo" store:Type="Tables" />
@@ -178,6 +186,14 @@ warning 6002: The table/view 'C:\USERS\SCOTT.FARNEY\SOURCE\REPOS\THECRASHRAVEN\T
           <FunctionImport Name="usp_InsertDentalCodes">
             <Parameter Name="Dental_Code" Mode="In" Type="String" />
             <Parameter Name="Dental_Code_Desc" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_UpdateClinicSites">
+            <Parameter Name="Site_Code" Mode="In" Type="String" />
+            <Parameter Name="State" Mode="In" Type="String" />
+            <Parameter Name="County" Mode="In" Type="String" />
+            <Parameter Name="Year" Mode="In" Type="Int32" />
+            <Parameter Name="Start_Date" Mode="In" Type="DateTime" />
+            <Parameter Name="End_Date" Mode="In" Type="DateTime" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="dbo_usp_GetSurveyData_Result">
@@ -303,6 +319,18 @@ warning 6002: The table/view 'C:\USERS\SCOTT.FARNEY\SOURCE\REPOS\THECRASHRAVEN\T
                 <ScalarProperty Name="Site_Code" ColumnName="Site_Code" />
               </MappingFragment>
             </EntityTypeMapping>
+            <EntityTypeMapping TypeName="DentalSurveyModel.Clinic_Sites">
+              <ModificationFunctionMapping>
+                <UpdateFunction FunctionName="DentalSurveyModel.Store.usp_UpdateClinicSites">
+                  <ScalarProperty Name="End_Date" ParameterName="End_Date" Version="Current" />
+                  <ScalarProperty Name="Start_Date" ParameterName="Start_Date" Version="Current" />
+                  <ScalarProperty Name="Year" ParameterName="Year" Version="Current" />
+                  <ScalarProperty Name="County" ParameterName="County" Version="Current" />
+                  <ScalarProperty Name="State" ParameterName="State" Version="Current" />
+                  <ScalarProperty Name="Site_Code" ParameterName="Site_Code" Version="Current" />
+                </UpdateFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Dental_Code_Costs">
             <EntityTypeMapping TypeName="DentalSurveyModel.Dental_Code_Costs">
@@ -344,6 +372,7 @@ warning 6002: The table/view 'C:\USERS\SCOTT.FARNEY\SOURCE\REPOS\THECRASHRAVEN\T
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="usp_InsertClinicSites" FunctionName="DentalSurveyModel.Store.usp_InsertClinicSites" />
           <FunctionImportMapping FunctionImportName="usp_InsertDentalCodes" FunctionName="DentalSurveyModel.Store.usp_InsertDentalCodes" />
+          <FunctionImportMapping FunctionImportName="usp_UpdateClinicSites" FunctionName="DentalSurveyModel.Store.usp_UpdateClinicSites" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

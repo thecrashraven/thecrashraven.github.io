@@ -43,6 +43,7 @@
                 <asp:Label ID="Label5" runat="server" Text='<%# Bind("End_Date") %>'></asp:Label>
             </ItemTemplate>
         </asp:TemplateField>
+        <asp:CommandField ButtonType="Button" ShowEditButton="True" />
     </Columns>
 </asp:GridView>
 <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Clinic_Sites]"></asp:SqlDataSource>

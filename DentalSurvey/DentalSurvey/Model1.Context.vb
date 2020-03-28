@@ -101,4 +101,20 @@ Partial Public Class DentalSurveyEntities
         Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction("usp_InsertDentalCodes", dental_CodeParameter, dental_Code_DescParameter)
     End Function
 
+    Public Overridable Function usp_UpdateClinicSites(site_Code As String, state As String, county As String, year As Nullable(Of Integer), start_Date As Nullable(Of Date), end_Date As Nullable(Of Date)) As Integer
+        Dim site_CodeParameter As ObjectParameter = If(site_Code IsNot Nothing, New ObjectParameter("Site_Code", site_Code), New ObjectParameter("Site_Code", GetType(String)))
+
+        Dim stateParameter As ObjectParameter = If(state IsNot Nothing, New ObjectParameter("State", state), New ObjectParameter("State", GetType(String)))
+
+        Dim countyParameter As ObjectParameter = If(county IsNot Nothing, New ObjectParameter("County", county), New ObjectParameter("County", GetType(String)))
+
+        Dim yearParameter As ObjectParameter = If(year.HasValue, New ObjectParameter("Year", year), New ObjectParameter("Year", GetType(Integer)))
+
+        Dim start_DateParameter As ObjectParameter = If(start_Date.HasValue, New ObjectParameter("Start_Date", start_Date), New ObjectParameter("Start_Date", GetType(Date)))
+
+        Dim end_DateParameter As ObjectParameter = If(end_Date.HasValue, New ObjectParameter("End_Date", end_Date), New ObjectParameter("End_Date", GetType(Date)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction("usp_UpdateClinicSites", site_CodeParameter, stateParameter, countyParameter, yearParameter, start_DateParameter, end_DateParameter)
+    End Function
+
 End Class
