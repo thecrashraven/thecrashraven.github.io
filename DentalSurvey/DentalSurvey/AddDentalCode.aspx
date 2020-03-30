@@ -31,5 +31,13 @@
 
         </ItemTemplate>
     </asp:FormView>
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Dental_Codes]"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Dental_Codes]" InsertCommand="Insert into Dental_Codes
+(Dental_Code, Dental_Code_Desc)
+values
+(@Dental_Code, @Dental_Code_Desc)">
+        <InsertParameters>
+            <asp:Parameter Name="Dental_Code" />
+            <asp:Parameter Name="Dental_Code_Desc" />
+        </InsertParameters>
+    </asp:SqlDataSource>
 </asp:Content>
